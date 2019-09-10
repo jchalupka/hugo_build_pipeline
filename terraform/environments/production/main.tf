@@ -2,6 +2,11 @@ provider "aws" {
   region = "us-east-1"
 }
 
+variable "github_oauth_token" {
+  type = string
+}
+
+
 module "build" {
   source = "../../modules/static_site_pipeline"
 
@@ -15,7 +20,7 @@ module "build" {
   enabled = true
 
   # Application repository on GitHub
-  github_oauth_token = "123"
+  github_oauth_token = var.github_oauth_token
   repo_owner         = "jchalupka"
   repo_name          = "hugo_build_pipeline"
   branch             = "master"
