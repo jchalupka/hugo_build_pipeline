@@ -24,10 +24,12 @@ module "build" {
   enabled = true
 
   # Application repository on GitHub
-  github_oauth_token = var.github_oauth_token
-  repo_owner         = "jchalupka"
-  repo_name          = "hugo-work-term-reports"
-  branch             = "master"
+  github_oauth_token  = var.github_oauth_token
+  repo_owner          = "jchalupka"
+  repo_name           = "hugo-work-term-reports"
+  branch              = "added-buildspec" #TODO change back to master
+  poll_source_changes = false
+
 
   # http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html
   # http://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html
