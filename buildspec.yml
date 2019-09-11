@@ -1,0 +1,13 @@
+version: 0.1
+phases:
+  install:
+    commands:
+      - apt-get update
+      - apt-get install hugo -y
+  build:
+    commands:
+      - hugo
+  post_build:
+    commands:
+      - aws s3 sync build/ "s3://${BUCKET_NAME}" --acl=public-read --delete
+      - aws cloudfront create-invalidation --distribution-id "${DISTRIBUTION_ID}" --paths *
