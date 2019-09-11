@@ -26,7 +26,7 @@ module "build" {
   # Application repository on GitHub
   github_oauth_token = var.github_oauth_token
   repo_owner         = "jchalupka"
-  repo_name          = "hugo_build_pipeline"
+  repo_name          = "hugo-work-term-reports"
   branch             = "master"
 
   # http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html

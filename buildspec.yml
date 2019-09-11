@@ -11,5 +11,5 @@ phases:
       - hugo
   post_build:
     commands:
-      - aws s3 sync public/ "s3://${env.BUCKET_NAME}" --acl=public-read --delete
+      - aws s3 sync public/ "s3://${BUCKET_NAME}" --acl=public-read --delete
       # - aws cloudfront create-invalidation --distribution-id "${DISTRIBUTION_ID}" --paths *
