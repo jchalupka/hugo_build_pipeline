@@ -6,6 +6,10 @@ variable "github_oauth_token" {
   type = string
 }
 
+variable "bucket_name" {
+  type = string
+}
+
 
 module "build" {
   source = "../../modules/static_site_pipeline"
@@ -30,4 +34,8 @@ module "build" {
   build_image        = "aws/codebuild/standard:2.0"
   build_compute_type = "BUILD_GENERAL1_SMALL"
 
+  environment_variables = [{
+    name  = "BUCKET_NAME"
+    value = var.bucket_name
+  }]
 }
