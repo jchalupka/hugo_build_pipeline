@@ -27,7 +27,7 @@ module "build" {
   github_oauth_token  = var.github_oauth_token
   repo_owner          = "jchalupka"
   repo_name           = "hugo-work-term-reports"
-  branch              = "added-buildspec" #TODO change back to master
+  branch              = "master"
   poll_source_changes = false
 
 
