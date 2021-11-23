@@ -6,6 +6,10 @@ variable "github_oauth_token" {
   type = string
 }
 
+variable "bucket_name" {
+  type = string
+}
+
 
 module "build" {
   source = "../../modules/static_site_pipeline"
@@ -20,14 +24,20 @@ module "build" {
   enabled = true
 
   # Application repository on GitHub
-  github_oauth_token = var.github_oauth_token
-  repo_owner         = "jchalupka"
-  repo_name          = "hugo_build_pipeline"
-  branch             = "master"
+  github_oauth_token  = var.github_oauth_token
+  repo_owner          = "jchalupka"
+  repo_name           = "hugo-work-term-reports"
+  branch              = "master"
+  poll_source_changes = false
+
 
   # http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html
   # http://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html
   build_image        = "aws/codebuild/standard:2.0"
   build_compute_type = "BUILD_GENERAL1_SMALL"
 
+  environment_variables = [{
+    name  = "BUCKET_NAME"
+    value = var.bucket_name
+  }]
 }
